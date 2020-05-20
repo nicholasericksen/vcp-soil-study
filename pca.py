@@ -5,7 +5,8 @@ import matplotlib.pyplot as plt
 from sklearn import preprocessing
 from sklearn.decomposition import PCA
 
-df = pd.read_csv('soil_vcp_allsites_2018_loc.csv')
+#df = pd.read_csv('soil_vcp_allsites_2018_loc.csv')
+df = pd.read_csv('data.csv')
 df = df.loc[:, ~df.columns.str.contains('^Unnamed')]
 df = df.drop(columns=['transect', 'plot', 'sample'])
 df.loc[:, df.columns != 'region'] = preprocessing.scale(df.loc[:, df.columns != 'region'])

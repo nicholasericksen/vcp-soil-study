@@ -1,0 +1,38 @@
+Analysis of the soil sample data was performed using Python library Pandas for data analysis and slicing while Seaborn was used for data visualization along with matplotlib.
+All samples are reported in ppm.
+
+The description of the dataset for all sites
+                Na            Mg          Al             Si            S  \
+count   180.000000    180.000000  180.000000     180.000000   180.000000   
+mean   1101.007274  12132.487882    3.068844  162051.079607  7855.029377   
+std     724.544757   2318.695823    0.482190   29729.546405   465.544185   
+min    -508.411700   8099.008160    1.435630   78952.344680  7194.559470     
+max    2818.509530  18088.716750    4.957717  215358.753900  9369.779190   
+
+                  K            Ca           Ba           Ti           V  \
+count    180.000000    180.000000   180.000000   180.000000  180.000000   
+mean   10813.282653   8002.330875  1189.625992  4719.168235  162.387222   
+std     2118.892400   7813.202305   400.386059   953.951702   68.049288   
+min     5463.809610    976.421910   418.973124  2660.864710  -13.453805      
+max    16696.012740  45469.269500  3387.880962  9869.866740  430.856009   
+
+               Cr            Mn            Fe          Co          Ni  \
+count  180.000000    180.000000    180.000000  180.000000  180.000000   
+mean    63.482892   1326.906435  31078.571850   25.483146   49.494488   
+std     16.274243   1632.883224   7491.401488    5.036103   15.179858   
+min    -12.245582     49.986346  15937.687030   12.707727   -1.798847     
+max     96.480604  12727.966900  54920.520290   39.431235   90.693063   
+
+               Cu           Zn  
+count  180.000000   180.000000  
+mean   180.255026   299.005147  
+std    144.472118   153.855002  
+min    -10.125255   143.451616    
+max    974.460895  1211.514519
+
+Concentration of elements below 1000 ppm are considered trace elements.
+
+Question: should we be studying trace elements? Bern et al seems to remove these from consideration in favor of "ore".
+Question: some elements also have minimum values reported below zero, is this an error?
+
+
