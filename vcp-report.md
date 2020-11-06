@@ -1,0 +1,191 @@
+# Soil Report - VCP
+
+### Background Soil Composition <br>
+      type       Na       Mg        Al         Si       P        S         K  \
+0   gneiss  1907.29  8580.34  40664.61  213027.38  115.68  7086.07  18858.64   
+1  granite  2119.29  7305.64  48622.88  244125.58  260.31  7111.15  39262.68   
+2   schist  6236.06  7693.39  38807.44  134389.48  133.24  6563.69  10603.84   
+3  Average  3420.88  7859.79  42698.31  197180.81  169.75  6920.31  22908.39   
+
+         Ca       Ba       Ti       V      Cr       Mn        Fe     Co  \
+0  22160.90   676.71  1450.43   46.47  780.32   338.96  21002.34 -20.85   
+1   7795.43  1036.50   347.09   65.27  771.27    17.06   8256.38 -36.51   
+2  55639.43   835.59  4537.50  240.76  195.70  1614.89  70691.95  32.67   
+3  28531.92   849.60  2111.67  117.50  582.43   656.97  33316.89  -8.23   
+
+       Ni      Cu      Zn  
+0  249.28  103.28  133.43  
+1  260.31  127.42  179.07  
+2  118.16   36.35  132.94  
+3  209.25   89.02  148.48  <br>
+## Mn
+**Summary**: Manganese is a chemical element with symbol Mn and atomic number 25. It is not found as a free element in nature; it is often found in combination with iron, and in many minerals. Manganese is a metal with important industrial metal alloy uses, particularly in stainless steels. <br>
+**Category**: transition metal<br>
+**Number**: 25<br>
+**Atomic Mass**: 54.9380443<br>
+### Region: cw
+count      45.000000<br>mean     1607.121765<br>std      1032.125934<br>min       309.894154<br>25%       746.008580<br>50%      1489.927203<br>75%      2105.309052<br>max      5047.359100
+#### EF: [2.65320068]<br><br>
+### Region: nwf
+count       45.000000<br>mean      1765.441567<br>std       2942.957936<br>min         49.986346<br>25%        349.551144<br>50%        713.580784<br>75%       1832.511752<br>max      12727.966900
+#### EF: [3.26709064]<br><br>
+### Region: vh
+count      45.000000<br>mean      996.853358<br>std       453.318859<br>min       275.598479<br>25%       648.824886<br>50%       939.933880<br>75%      1377.316298<br>max      2006.082905
+#### EF: [1.60109868]<br><br>
+### Region: tb
+count      45.000000<br>mean      938.209050<br>std       610.181611<br>min       198.204463<br>25%       491.381687<br>50%       844.049082<br>75%      1204.347826<br>max      2636.067973
+#### EF: [1.37443203]<br><br>
+<br><img src='results/Mn.png' style='display:block;float:right;page-break-before:always'><br><br>
+<br><br>
+## Fe
+**Summary**: Iron is a chemical element with symbol Fe (from Latin:ferrum) and atomic number 26. It is a metal in the first transition series. It is by mass the most common element on Earth, forming much of Earth's outer and inner core. <br>
+**Category**: transition metal<br>
+**Number**: 26<br>
+**Atomic Mass**: 55.8452<br>
+### Region: cw
+count       45.000000<br>mean     30718.451657<br>std       7769.905274<br>min      19880.077290<br>25%      24931.443660<br>50%      28802.999400<br>75%      35548.040910<br>max      50263.914700
+#### EF: [1.]<br><br>
+### Region: nwf
+count       45.000000<br>mean     27403.927052<br>std       6289.044140<br>min      15937.687030<br>25%      23878.858030<br>50%      26746.872330<br>75%      30278.721620<br>max      47126.393700
+#### EF: [1.]<br><br>
+### Region: vh
+count       45.000000<br>mean     31574.306099<br>std       5179.618887<br>min      21302.898190<br>25%      28588.551740<br>50%      31406.275120<br>75%      34051.766430<br>max      48492.070900
+#### EF: [1.]<br><br>
+### Region: tb
+count       45.000000<br>mean     34617.602591<br>std       8634.558639<br>min      22226.005020<br>25%      27556.833370<br>50%      32747.811710<br>75%      39797.740810<br>max      54920.520290
+#### EF: [1.]<br><br>
+<br><img src='results/Fe.png' style='display:block;float:right;page-break-before:always'><br><br>
+<br><br>
+## Ti
+**Summary**: Titanium is a chemical element with symbol Ti and atomic number 22. It is a lustrous transition metal with a silver color, low density and high strength. It is highly resistant to corrosion in sea water, aqua regia and chlorine. <br>
+**Category**: transition metal<br>
+**Number**: 22<br>
+**Atomic Mass**: 47.8671<br>
+### Region: cw
+count      45.000000<br>mean     4979.893126<br>std       647.704955<br>min      3748.561490<br>25%      4519.440470<br>50%      4843.307850<br>75%      5477.552570<br>max      6380.946730
+#### EF: [2.5577507]<br><br>
+### Region: nwf
+count      45.000000<br>mean     5097.992231<br>std      1495.588495<br>min      2660.864710<br>25%      4200.811720<br>50%      4557.179950<br>75%      5370.035720<br>max      9869.866740
+#### EF: [2.93510659]<br><br>
+### Region: vh
+count      45.000000<br>mean     4359.907092<br>std       451.528294<br>min      3362.939710<br>25%      4099.712000<br>50%      4394.283450<br>75%      4613.173300<br>max      5357.541990
+#### EF: [2.17861722]<br><br>
+### Region: tb
+count      45.000000<br>mean     4438.880488<br>std       642.897977<br>min      3039.976410<br>25%      4009.590080<br>50%      4349.727220<br>75%      5042.703660<br>max      5551.603150
+#### EF: [2.02308428]<br><br>
+<br><img src='results/Ti.png' style='display:block;float:right;page-break-before:always'><br><br>
+<br><br>
+## Ba
+**Summary**: Barium is a chemical element with symbol Ba and atomic number 56. It is the fifth element in Group 2, a soft silvery metallic alkaline earth metal. Because of its high chemical reactivity barium is never found in nature as a free element. <br>
+**Category**: alkaline earth metal<br>
+**Number**: 56<br>
+**Atomic Mass**: 137.3277<br>
+### Region: cw
+count      45.000000<br>mean     1163.063197<br>std       265.106752<br>min       697.192151<br>25%       987.709899<br>50%      1142.202120<br>75%      1305.962726<br>max      1821.268794
+#### EF: [1.48475014]<br><br>
+### Region: nwf
+count      45.000000<br>mean     1448.827605<br>std       621.884574<br>min       418.973124<br>25%      1016.565544<br>50%      1239.951387<br>75%      1836.791646<br>max      3387.880962
+#### EF: [2.07325773]<br><br>
+### Region: vh
+count      45.000000<br>mean     1108.404108<br>std       198.698234<br>min       686.241100<br>25%       977.028015<br>50%      1098.743398<br>75%      1225.763758<br>max      1703.556760
+#### EF: [1.3766188]<br><br>
+### Region: tb
+count      45.000000<br>mean     1038.209058<br>std       236.715066<br>min       634.900370<br>25%       860.193027<br>50%      1030.337501<br>75%      1178.015260<br>max      1547.855397
+#### EF: [1.17608094]<br><br>
+<br><img src='results/Ba.png' style='display:block;float:right;page-break-before:always'><br><br>
+<br><br>
+## Ca
+**Summary**: Calcium is a chemical element with symbol Ca and atomic number 20. Calcium is a soft gray alkaline earth metal, fifth-most-abundant element by mass in the Earth's crust. The ion Ca2+ is also the fifth-most-abundant dissolved ion in seawater by both molarity and mass, after sodium, chloride, magnesium, and sulfate. <br>
+**Category**: alkaline earth metal<br>
+**Number**: 20<br>
+**Atomic Mass**: 40.0784<br>
+### Region: cw
+count      45.000000<br>mean     6341.245428<br>std      1568.402973<br>min      3524.260540<br>25%      4765.137610<br>50%      6851.496980<br>75%      7609.749430<br>max      9155.329430
+#### EF: [0.24105086]<br><br>
+### Region: nwf
+count       45.000000<br>mean     12973.787737<br>std      13775.690253<br>min        976.421910<br>25%       3807.698130<br>50%       5494.462120<br>75%      21591.665610<br>max      45469.269500
+#### EF: [0.55282469]<br><br>
+### Region: vh
+count      45.000000<br>mean     3748.147276<br>std      1549.324163<br>min      1166.788180<br>25%      2919.164190<br>50%      3358.164870<br>75%      4245.770230<br>max      7534.011200
+#### EF: [0.13861693]<br><br>
+### Region: tb
+count       45.000000<br>mean      8946.143058<br>std       2489.455133<br>min       3615.932600<br>25%       7616.827530<br>50%       8789.153580<br>75%      10066.685510<br>max      15834.847770
+#### EF: [0.30176738]<br><br>
+<br><img src='results/Ca.png' style='display:block;float:right;page-break-before:always'><br><br>
+<br><br>
+## K
+**Summary**: Potassium is a chemical element with symbol K (derived from Neo-Latin, kalium) and atomic number 19. It was first isolated from potash, the ashes of plants, from which its name is derived. In the Periodic table, potassium is one of seven elements in column (group) 1 (alkali metals):they all have a single valence electron in their outer electron shell, which they readily give up to create an atom with a positive charge - a cation, and combine with anions to form salts. <br>
+**Category**: alkali metal<br>
+**Number**: 19<br>
+**Atomic Mass**: 39.09831<br>
+### Region: cw
+count       45.000000<br>mean     11913.084738<br>std       1307.066779<br>min       9659.817860<br>25%      11196.392120<br>50%      11924.155090<br>75%      12337.350230<br>max      15798.331390
+#### EF: [0.56402045]<br><br>
+### Region: nwf
+count       45.000000<br>mean      8873.700602<br>std       1435.351231<br>min       5463.809610<br>25%       8085.433390<br>50%       8898.799850<br>75%      10099.390490<br>max      11156.277090
+#### EF: [0.47093602]<br><br>
+### Region: vh
+count       45.000000<br>mean      9478.925377<br>std        794.166291<br>min       7323.580830<br>25%       9081.933270<br>50%       9589.930970<br>75%      10000.476410<br>max      10862.282650
+#### EF: [0.43661156]<br><br>
+### Region: tb
+count       45.000000<br>mean     12987.419896<br>std       1458.001899<br>min      10198.455310<br>25%      12097.319760<br>50%      13007.017500<br>75%      13831.536510<br>max      16696.012740
+#### EF: [0.54562698]<br><br>
+<br><img src='results/K.png' style='display:block;float:right;page-break-before:always'><br><br>
+<br><br>
+## S
+**Summary**: Sulfur or sulphur (see spelling differences) is a chemical element with symbol S and atomic number 16. It is an abundant, multivalent non-metal. Under normal conditions, sulfur atoms form cyclic octatomic molecules with chemical formula S8. <br>
+**Category**: polyatomic nonmetal<br>
+**Number**: 16<br>
+**Atomic Mass**: 32.06<br>
+### Region: cw
+count      45.000000<br>mean     7445.791574<br>std       112.722976<br>min      7194.559470<br>25%      7380.730760<br>50%      7452.689060<br>75%      7517.515580<br>max      7643.121060
+#### EF: [1.1669457]<br><br>
+### Region: nwf
+count      45.000000<br>mean     8265.781530<br>std       516.717124<br>min      7613.027370<br>25%      7884.142120<br>50%      8106.512420<br>75%      8699.829030<br>max      9369.779190
+#### EF: [1.45214577]<br><br>
+### Region: vh
+count      45.000000<br>mean     7934.598694<br>std       309.260824<br>min      7434.844320<br>25%      7736.677680<br>50%      7868.122570<br>75%      8086.091830<br>max      8751.698070
+#### EF: [1.20984642]<br><br>
+### Region: tb
+count      45.000000<br>mean     7773.945707<br>std       386.425371<br>min      7328.088080<br>25%      7527.425040<br>50%      7657.317920<br>75%      7895.361350<br>max      9011.674690
+#### EF: [1.08114417]<br><br>
+<br><img src='results/S.png' style='display:block;float:right;page-break-before:always'><br><br>
+<br><br>
+## Si
+**Summary**: Silicon is a chemical element with symbol Si and atomic number 14. It is a tetravalent metalloid, more reactive than germanium, the metalloid directly below it in the table. Controversy about silicon's character dates to its discovery. <br>
+**Category**: metalloid<br>
+**Number**: 14<br>
+**Atomic Mass**: 28.085<br>
+### Region: cw
+count        45.000000<br>mean     176971.569360<br>std       16813.152468<br>min      145760.914200<br>25%      166825.889000<br>50%      177034.730000<br>75%      188521.818000<br>max      215358.753900
+#### EF: [0.9734283]<br><br>
+### Region: nwf
+count        45.000000<br>mean     131747.465839<br>std       33693.455229<br>min       78952.344680<br>25%      103383.272100<br>50%      136852.383500<br>75%      158991.447000<br>max      197962.590800
+#### EF: [0.81232395]<br><br>
+### Region: vh
+count        45.000000<br>mean     157917.883613<br>std       17154.250088<br>min      119034.808800<br>25%      144926.114200<br>50%      161601.724200<br>75%      170310.636100<br>max      186788.590300
+#### EF: [0.84507896]<br><br>
+### Region: tb
+count        45.000000<br>mean     181567.399616<br>std       17594.645308<br>min      137849.758800<br>25%      170675.050300<br>50%      179994.511600<br>75%      195453.137900<br>max      214990.866500
+#### EF: [0.88621822]<br><br>
+<br><img src='results/Si.png' style='display:block;float:right;page-break-before:always'><br><br>
+<br><br>
+## Mg
+**Summary**: Magnesium is a chemical element with symbol Mg and atomic number 12. It is a shiny gray solid which bears a close physical resemblance to the other five elements in the second column (Group 2, or alkaline earth metals) of the periodic table:they each have the same electron configuration in their outer electron shell producing a similar crystal structure. Magnesium is the ninth most abundant element in the universe. <br>
+**Category**: alkaline earth metal<br>
+**Number**: 12<br>
+**Atomic Mass**: 24.305<br>
+### Region: cw
+count       45.000000<br>mean     10618.871620<br>std       1407.425136<br>min       8099.008160<br>25%       9304.960280<br>50%      10750.544680<br>75%      11426.306650<br>max      13860.105120
+#### EF: [1.46532058]<br><br>
+### Region: nwf
+count       45.000000<br>mean     14263.685163<br>std       1989.113108<br>min       9564.404790<br>25%      13202.072670<br>50%      14333.087800<br>75%      15520.082990<br>max      18088.716750
+#### EF: [2.20634052]<br><br>
+### Region: vh
+count       45.000000<br>mean     13255.740479<br>std       1651.315868<br>min       9900.896010<br>25%      12341.183590<br>50%      13072.507630<br>75%      14258.140860<br>max      17413.698020
+#### EF: [1.77960566]<br><br>
+### Region: tb
+count       45.000000<br>mean     10391.654267<br>std       1352.638057<br>min       8205.813630<br>25%       9610.966780<br>50%      10130.888210<br>75%      10861.581100<br>max      14649.179540
+#### EF: [1.27245169]<br><br>
+<br><img src='results/Mg.png' style='display:block;float:right;page-break-before:always'><br><br>
+<br><br>

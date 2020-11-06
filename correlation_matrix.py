@@ -15,7 +15,8 @@ from sklearn.cluster import KMeans
 #### SVC imports #######
 from sklearn import svm
 
-df = pd.read_csv('soil_vcp_allsites_2018_loc.csv')
+df = pd.read_csv('vcp_soil_ppm.csv')
+#df = pd.read_csv('soil_vcp_allsites_2018_loc.csv')
 # Remove unnamed values
 df = df.loc[:, ~df.columns.str.contains('^Unnamed')]
 df = df.drop(columns=['transect', 'plot', 'sample'])
@@ -61,7 +62,6 @@ for index, region in enumerate(['cw', 'nwf', 'vh', 'tb']):
     data = pd.DataFrame(preprocessing.scale(tmp),columns = tmp.columns) 
     
     
-    '''
     ##### Univariate ANalysis #########
     
     data.hist(bins=15, color='steelblue', edgecolor='black', linewidth=1.0,
@@ -83,8 +83,8 @@ for index, region in enumerate(['cw', 'nwf', 'vh', 'tb']):
                                       linewidths=.03)
     f.subplots_adjust(top=0.93)
     t= f.suptitle(f'Soil Composition Correlation - {region}', fontsize=14)
+    plt.savefig(f'tmp/{region}-correlation.png')
     #plt.show()
-    '''
     ################## PCA ANalysis ###############################
  #   plt.scatter(X_pca[:,0], X_pca[:,1], c=colors[index], label=region)
     ###########################################

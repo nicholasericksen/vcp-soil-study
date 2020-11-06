@@ -1,6 +1,8 @@
 import seaborn as sns
 import pandas as pd
 import matplotlib.pyplot as plt
+import markdown
+import json
 
 sns.set()
 pd.set_option('display.max_columns', 25)
@@ -8,6 +10,14 @@ pd.set_option('display.max_columns', 25)
 data = pd.read_csv('vcp_soil_ppm.csv')
 
 bg = pd.read_csv('vcp_bedrock_ppm.csv')
+
+
+# Periodic Table
+with open('periodic_table/PeriodicTableJSON.json', 'r') as f:
+  periodic_table = json.load(f)
+
+
+
 
 # Convert this whole idea into just a conditional clause such as
 # " where mean > 1000 " to eliminate trace elements
@@ -18,7 +28,27 @@ regions = df['region'].unique()
 
 plots = [[1,1], [1,2], [2,1], [2,2]]
 
+ele_data = {}
+for element in periodic_table['elements']:
+  symbol = element['symbol']
+  if symbol in labels:
+    ele_data[symbol] = element 
+
+
+
+md = '# Soil Report - VCP\n\n'
+md += '### Background Soil Composition <br>\n'
+md += str(bg.round(2))
+md += '<br>\n'
+
+efs = []
+
 for element in labels[1:]:
+  md += f'## {element}\n'
+  md += f"**Summary**: {ele_data[element]['summary']} <br>\n"
+  md += f"**Category**: {ele_data[element]['category']}<br>\n"
+  md += f"**Number**: {ele_data[element]['number']}<br>\n"
+  md += f"**Atomic Mass**: {ele_data[element]['atomic_mass']}<br>\n"
   for index, region in enumerate(regions):
     i = 220 + index + 1
     plt.subplot(i)
@@ -30,28 +60,39 @@ for element in labels[1:]:
       plt.xlabel('Concentration (PPM)')
     plt.legend()
     
+    md += f'### Region: {region}\n'
+    #md += f'### Element: {element}\n'
+    md += str(data.loc[data['region'] == region][element].describe().to_string()).replace('\n', '<br>')
+    md += '\n'
     # Calculate EF
-    ef = (df[element].mean()/df['Fe'].mean()) / (bg.loc[bg['type'] == 'Average'][element]/bg.loc[bg['type'] == 'Average']['Fe'])
-    print(f'EF for {element} in {region}: {ef.values}')
-
-
-    #print(f'===========Site: {region}===Element: {element} =======\n')
-    #print(data.loc[data['region'] == region][element].describe())
-    #print('==========================================\n')
-    # Might move this to the outer most level loop to not have to keep constantly open a file
-    # descriptor 
-    # or save all txt to variablke and open and close file once after loop
-    with open('vcp-raw-data-stats.txt', 'a') as f:
-      f.write(f'===========Site: {region}===Element: {element} =======\n')
-      f.write(str(data.loc[data['region'] == region][element].describe()) + '\n')
-      f.write('==========================================\n')
-     
+    ef = (df.loc[df['region'] == region][element].mean()/df.loc[df['region'] == region]['Fe'].mean()) / (bg.loc[bg['type'] == 'Average'][element]/bg.loc[bg['type'] == 'Average']['Fe'])
+    efs.append(ef.values) 
+    #print(f'EF for {element} in {region}: {ef.values}')
+    md += f'#### EF: {ef.values}'
+    md += '<br><br>\n'
+  md += f"<br><img src='results/{element}.png' style='display:block;float:right;page-break-before:always'><br><br>\n"
+  md += '<br><br>\n'
 
   plt.suptitle(f'Sample Results for {element}')
-  #plt.text(0.5,1.0, "Concentration (ppm)", ha="center", va="center")
-  #plt.text(0.05,1.0, "Samples (n)", ha="center", va="center", rotation=90)
   plt.savefig(f'results/{element}.png')
 
   # clear plot
   plt.clf()
 
+#md += data.describe().to_string().replace('\n', ' <br/> ') + '\n'
+print(efs)
+# Add EFs to dataframe
+#df['ef'] = efs
+## plt EF histogram
+#for region in regions:
+#  
+#  plt.hist(df.loc[df['region'] == region]['ef'], label=region)
+#
+#plt.show()
+
+with open('vcp-report.html', 'w+') as f:
+  html = markdown.markdown(md)
+  f.write(html)
+
+with open('vcp-report.md', 'w+') as f:
+  f.write(md)
