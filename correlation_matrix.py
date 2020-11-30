@@ -15,7 +15,7 @@ from sklearn.cluster import KMeans
 #### SVC imports #######
 from sklearn import svm
 
-df = pd.read_csv('vcp_soil_ppm.csv')
+df = pd.read_csv('data/vcp_soil_ppm.csv')
 #df = pd.read_csv('soil_vcp_allsites_2018_loc.csv')
 # Remove unnamed values
 df = df.loc[:, ~df.columns.str.contains('^Unnamed')]
@@ -83,7 +83,7 @@ for index, region in enumerate(['cw', 'nwf', 'vh', 'tb']):
                                       linewidths=.03)
     f.subplots_adjust(top=0.93)
     t= f.suptitle(f'Soil Composition Correlation - {region}', fontsize=14)
-    plt.savefig(f'tmp/{region}-correlation.png')
+    plt.savefig(f'results/{region}-correlation.png')
     #plt.show()
     ################## PCA ANalysis ###############################
  #   plt.scatter(X_pca[:,0], X_pca[:,1], c=colors[index], label=region)
@@ -96,18 +96,38 @@ X_pca = PCA()
 #tmp = X.loc[:, df.columns != 'region']
 
 #X = pca.fit_transform(X)
+X_cols = X.columns
 X = preprocessing.scale(X)
 X_pca.fit(X)
 print(f'Explained variace: {X_pca.explained_variance_ratio_}')
+plt.figure()
+features = range(X_pca.n_components_)
+plt.bar(features, X_pca.explained_variance_ratio_, color='black')
+plt.xlabel('PCA features')
+plt.ylabel('variance %')
+plt.xticks(features)
+plt.show()
+print("NICHOLAS")
 
+
+
+ax = sns.heatmap(X_pca.components_,
+                 cmap='YlGnBu',
+                 yticklabels=[ "PCA"+str(x) for x in range(1,X_pca.n_components_+1)],
+                 xticklabels=list(X_cols),
+                 cbar_kws={"orientation": "horizontal"},
+                 vmin=0, vmax=1, annot=True)
+ax.set_aspect("equal")
 
 
 
 X_pca = X_pca.transform(X)
 
+
 #####  Now Let's create labels for kmeans clustering #####
 labels = y.values.ravel()
 print(f'labels: {labels}')
+
 y.loc[df['region'] == 'tb', 'region'] = 0
 y.loc[df['region'] == 'vh', 'region'] = 1
 y.loc[df['region'] == 'nwf', 'region'] = 2
@@ -154,7 +174,6 @@ plt.scatter(X_pca[:,0],X_pca[:,1], c=kmeans.labels_)
 plt.show()
 
 ##### But its better to use SVC to gauge accuracy #########
-'''
 X_train, X_test, y_train, y_test = train_test_split(X_pca, y, test_size=0.4, random_state=0)
 clf = svm.SVC(kernel='linear', C=1).fit(X_train, y_train)
 score = clf.score(X_test, y_test)
@@ -162,6 +181,5 @@ print("SVC Classifier results")
 print(f"SVC SCORE: {score}")
 
 ### Cross validate
-#scores = cross_val_score(clf, X, y.values.ravel(), cv=5)
-#print("Accuracy: %0.2f (+/- %0.2f)" % (scores.mean(), scores.std() * 2))
-'''
+scores = cross_val_score(clf, X, y.values.ravel(), cv=5)
+print("Accuracy: %0.2f (+/- %0.2f)" % (scores.mean(), scores.std() * 2))
