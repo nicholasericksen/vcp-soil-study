@@ -204,7 +204,7 @@ plt.show()
 
 The minimal amount of Python code needed for graphing the results of PCA are shown here. Full code can be found in the Appendix.
 
-![All Data Feature Correlation Heatmap](results/all-regions-correlation.png?raw=true)
+![Explained Variance](results/pca-explained-variance.png?raw=true)
 
 ```
 Explained Variance Percentage of Each Principal Component
@@ -270,15 +270,16 @@ K Means clustering...
 
 
 ![All Data KMeans Inertia](results/kmeans-all-data-inertia.png)
-Homogeneity Score: 0.265
-Completeness Score: 0.290
-V Score: 0.277
+
+Homogeneity Score: 0.265 \
+Completeness Score: 0.290 \
+V Score: 0.277 \
 
 ##### PCA KMeans
 ![PCA KMeans Inertia](results/pca-kmeans-inertia.png)
 ![PCA KMeans Clustering](results/pca-kmeans-scatter-plot.png)
 
-PCA KMeans Performance
+PCA KMeans Performance \
 Homogeneity Score: 0.258 \
 Completeness Score: 0.304 \
 V Score: 0.279
