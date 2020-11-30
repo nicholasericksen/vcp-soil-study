@@ -171,7 +171,7 @@ cluster_amount = 4
 #TODO make this 7 clusters to match curve elbow and number of different soil types
 model = KMeans(n_clusters=cluster_amount)
 #TODO check this slicing grabs first 5 pca components
-clusters = model.fit(X[:,0:5])
+clusters = model.fit(X[:])
 y_pred = clusters.labels_
 
 # Measuring KMeans Performance
@@ -200,6 +200,7 @@ legend1 = ax.legend(handles, unique_labels,loc="lower left", title="Classes")
 ax.add_artist(legend1)
 centroids = clusters.cluster_centers_
 plt.scatter(centroids[:,0], centroids[:,1], zorder=10, marker='x', c='r', linewidths=2)
+#TODO: plot also the kmeans fit data on as different symbol maybe?
 plt.xlabel("PC-1")
 plt.ylabel("PC-2")
 plt.title("First 2 Principal Components Clustered with KMeans")

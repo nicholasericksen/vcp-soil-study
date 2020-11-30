@@ -11,7 +11,14 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-from sklearn.decomposition import PCA 
+from sklearn import preprocessing
+from sklearn.decomposition import PCA
+from sklearn.cluster import KMeans
+
+from sklearn.metrics.cluster import homogeneity_score
+from sklearn.metrics.cluster import completeness_score
+from sklearn.metrics.cluster import v_measure_score
+
 ```
 
 The analysis can be reproduced by downloading the soil dataset csv file and running `python analysis.py`.
@@ -267,21 +274,72 @@ This represents a simplified interpretation of PCA components.
 K-Means is an exact solution to linear problem when looked at in relation to PCA....etc
 
 K Means clustering...
+In this scenario the clustering of the data is performed to analysis if relationships exist between the various ecosystems of Van Cortlandt Park
+and the underlying soil composition.
+As a result, the generalness of the model and clustering is not generalized to other locations, but rather is provided as a relative comparision of each of the four regions.
 
+The inertia of centroids between clusters is a measure of the root square mean, which ideally is minimized between each independant cluster.
+Although we assume there are four regions under consideration for the majority of this study it is shown in the Figure X below that the ideal number of clusters is around seven when using
+the raw dataset and features.
+As there are 7 different soil types spread out accross the various ecological regions, it is possible that the characteristics of these soil types outweigh any ecological factors.
+This number of clusters is determined by observing where the inertia plot turns at the "elbow" and further clusters do not drastically improve performance of the clustering mechanism.
+This inertia clustering relationship is shown in Figure X below
 
 ![All Data KMeans Inertia](results/kmeans-all-data-inertia.png)
+
+There are a variety of metrics that can be used for measuring the performance of clustering algorithms.
+KMeans clustering commonly uses the metrics of completeness, homogeneity and V score to gauge its performance.
+The completeness of a cluster is determined by the how many members of a given class are placed in the same cluster.
+The homogeneity of a cluster means that all observations with the same class label are placed in the same cluster.
+An overall relationship between the completeness and homogeneity of a cluster can be determined using a combination of the two measurements weighted by a beta factor and is known as the V score.
+
+```
+v = (1 + beta) * homogeneity * completeness
+     / (beta * homogeneity + completeness)
+```
+
+Both homogeneity and completeness range from 0 to 1, with 1 being the ideal.
+The results for running KMeans clustering on the raw dataset with n=4 clusters are
 
 Homogeneity Score: 0.265 \
 Completeness Score: 0.290 \
 V Score: 0.277 
 
+As the dimension of the feature set is larger than three it is difficult to visualize the result of clustering.
+Overall the performance of the KMeans clustering is not perfect as the V score shows a value less than one.
+
 ##### PCA KMeans
+The first five principal components were analyzed as they comprise 89.22% of the variance for the entire dataset.
+The first two components make up 32.23% and 26.23% and can be graphed in a 2 dimensional scatter plot.
+
+TODO make this 3d plot to account for more variance...
+
+Again inertia was calculated and it is shown that using PCA the ideal number of clusters is still seven.
+
 ![PCA KMeans Inertia](results/pca-kmeans-inertia.png)
+
+The scatter plot is created of the first two principal components...
+
 ![PCA KMeans Clustering](results/pca-kmeans-scatter-plot.png)
 
-PCA KMeans Performance \
+
+The performance of n=4 clusters using PCA is also not very accurate based off of the V score, which reflects the underlying homogeneity and completeness of the classification.
+
+PCA KMeans Performance (5 components) \
 Homogeneity Score: 0.258 \
 Completeness Score: 0.304 \
 V Score: 0.279
 
+It is shown that the approximately the same amount of performance for KMeans clustering can be obtained using only the first 5 components will getting around the same
+homogeneity, completeness and V score as the complete dataset.
+This is significant in that it shows most of the information is preserved in PCA while greatly reducing the amount of data required to perform the analysis.
+Increases the number of Principal components does marignally increase the performance of the KMeans clustering, but at the expense of visualizing the results and decreased computational performance.
+The results of KMeans clustering using all PCA components is shown below
+
+Again with n=4 clusters produces slightly better results when using all PCA components.
+
+PCA KMeans Performance (All Components) \
+Homogeneity Score: 0.274 \
+Completeness Score: 0.298 \
+V Score: 0.285
 
