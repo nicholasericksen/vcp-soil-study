@@ -116,9 +116,10 @@ This table of descriptive statistics was generated using `df.describe()`.
 
 Why do some have the lowest value in the negatives??
 Histograms of the raw data can be found in Appendix.
-TODO: Add comment here as to how each region is different by element or the same by comparing each elements regional mean to the overall mean.
 
-##### Preprocessing the data
+![All Elements by Region](results/dataset-visual.png?raw=true)
+
+TODO: Add comment here as to how each region is different by element or the same by comparing each elements regional mean to the overall mean.
 
 ### Element Correlation
 
@@ -141,7 +142,7 @@ plt.show()
 
 Inspecting the correlation heatmap for the entire dataset in Figure X shows that there is only one element pair that is strongly correlated.
 
-[all_regions_correlation]
+![All Region Element Heatmap](results/all-regions-correlation.png?raw=true)
 
 Strong correlation refers to correlations with magnitudes greater than 0.90.
 Sodium (Na) and Magnesium (Mg) show a strong negative linear correlation for the complete dataset.
