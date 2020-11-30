@@ -204,7 +204,7 @@ plt.show()
 
 The minimal amount of Python code needed for graphing the results of PCA are shown here. Full code can be found in the Appendix.
 
-![All Data Feature Correlation Heatmap](results/all-regions-correlation.png:w)
+![All Data Feature Correlation Heatmap](results/all-regions-correlation.png?raw=true)
 
 ```
 Explained Variance Percentage of Each Principal Component
