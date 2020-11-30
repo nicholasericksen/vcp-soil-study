@@ -273,7 +273,7 @@ K Means clustering...
 
 Homogeneity Score: 0.265 \
 Completeness Score: 0.290 \
-V Score: 0.277 \
+V Score: 0.277 
 
 ##### PCA KMeans
 ![PCA KMeans Inertia](results/pca-kmeans-inertia.png)
