@@ -154,10 +154,10 @@ It can therefore be inferred by visual inspection of the correlation heatmaps th
 Each region has its own unique pair of highly correlated elements as shown in Figures, A, B, C, and D.
 
 
-![NWF Region Element Heatmap](results/nwf-correlation.png?raw=true)
-![VH Region Element Heatmap](results/vh-correlation.png?raw=true)
-![TB Region Element Heatmap](results/tb-correlation.png?raw=true)
-![CW Region Element Heatmap](results/cw-correlation.png?raw=true)
+![NWF Region Element Heatmap](./results/nwf-correlation.png?raw=true)
+![VH Region Element Heatmap](./results/vh-correlation.png?raw=true)
+![TB Region Element Heatmap](./results/tb-correlation.png?raw=true)
+![CW Region Element Heatmap](./results/cw-correlation.png?raw=true)
 
 
 As discussed the nwf region has a high positive linear correlation amongst the Cu-Zn element pair in which no other region has a signigicantly strong correlation.
