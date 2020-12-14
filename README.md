@@ -133,7 +133,9 @@ TODO: Add comment here as to how each region is different by element or the same
 The Pearson correlation coefficient can be used to describe the linear relationship between two independant variables.
 It value ranges from -1 to 1 with -1 being total negative linear correlation and +1 being total positive linear correlation.
 Positive linear correlation describes the relationship between two variables in which if the value of one increases, so does the other.
-The opposite is also said to be true in that a descread in one positively correlated linear variable results in a descrease of the second as well.
+When a negative linear correlation exists between two variables, it implies that as one variable increases the other decreases.
+A correlation of zero implies that no correlation exists between the two variables, or one variable can not be used to predict the other.
+Uncorrelated variables are useful for classification and regression analysis as they contain the least redundant information.
 
 The results of calculating this coefficient for each combinational pair of elements results in the following heatmap.
 This correlation matrix was calculated using Pandas and plotted using the Seaborn package.
