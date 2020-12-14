@@ -322,7 +322,7 @@ Again inertia was calculated and it is shown that using PCA the ideal number of 
 
 The scatter plot is created of the first two principal components...
 
-![PCA KMeans Clustering](results/pca-kmeans-scatter-plot.png)
+![PCA KMeans Clustering](results/region-kmeans.png)
 
 
 The performance of n=4 clusters using PCA is also not very accurate based off of the V score, which reflects the underlying homogeneity and completeness of the classification.
@@ -345,3 +345,40 @@ Homogeneity Score: 0.274 \
 Completeness Score: 0.298 \
 V Score: 0.285
 
+### Soil Type Analysis
+The inertia plots above show that the ideal number of clusters from the data is somewhere between four and seven, observed using the elbow method.
+It is noted in the descriptive statistics section that there are 7 soil types.
+As the four ecological regions were used as labels to classify the dataset, the soil type was also inspected and the results follow.
+
+![Soil Type Composition](results/dataset-visual-soil_type.png)
+
+Figure X shows that iron and silicon are the most prevelant elements across all soil types.
+
+Figure X shows the first two principal components of KMeans clustering in a two dimensional scatter plot.
+The first five principal components were used to perform the clustering.
+For ease of visualization only the first two dimensions are shown here.
+Seven clusters were choosen to represent the different soil types.
+
+![Soil Type KMEANS](results/soil-type-kmeans.png)
+
+The performance of the KMeans clustering algorithm improved slightly, as indicated by the increased V score.
+This was true for both clustering performed on the original dataset and on the PCA transform set.
+
+```
+KMeans Raw Data Performance (soil_type)
+Homogeneity Score
+0.3844976351123592
+Completeness Score
+0.4020805261259705
+V Score
+0.39309255974455154
+Enter the number of pca_components to include: 5
+
+PCA KMeans Performance
+Homogeneity Score
+0.36671399306333796
+Completeness Score
+0.39092735167064535
+V Score
+0.378433756619111
+```
