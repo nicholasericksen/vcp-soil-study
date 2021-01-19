@@ -419,12 +419,12 @@ The underlying soil types were also compared and it was observed that they can m
 
 
 ### References
-[1] https://www.sciencedirect.com/topics/mathematics/pearson-correlation-coefficient
-[2] https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6926743/
-[3] "Discrimination of management effects on soil parameters by using principal component analysis: a multivariate analysis case study" Sena. Frighetteo. Valarini. Tokeshi. Poppi.
-[4] "Assesment of Soil heavy Metail Pollution with Principal Component Analysis and GeoAccumulation index". Zhiyuan. Dengfend. huiping. Zhiping.
-[5] "Improved Enrichemnt fdactor calculations through principal component analysis: Examples from soils near breccia pipe uraniu, mines, Arizona, USA". Bern. Walton-Day. Naftz
-[6] "Principal component analysis as a tool to indicate the origin of potenitally toxic elemnts in soils". Boruvka. Vacek. Jehlicka.
-[7] V-Measure: A conditional entropy-based external cluster evaluation measure Andrew Rosenberg and Julia Hirschberg, 2007 (https://scikit-learn.org/stable/modules/clustering.html#homogeneity-completeness)
-[8] Identication and Characterization of Events in Social Media, Hila Becker, PhD Thesis. (https://scikit-learn.org/stable/modules/clustering.html#homogeneity-completeness)
+[1] https://www.sciencedirect.com/topics/mathematics/pearson-correlation-coefficient \
+[2] https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6926743/ \
+[3] "Discrimination of management effects on soil parameters by using principal component analysis: a multivariate analysis case study" Sena. Frighetteo. Valarini. Tokeshi. Poppi. \
+[4] "Assesment of Soil heavy Metail Pollution with Principal Component Analysis and GeoAccumulation index". Zhiyuan. Dengfend. huiping. Zhiping. \
+[5] "Improved Enrichemnt fdactor calculations through principal component analysis: Examples from soils near breccia pipe uraniu, mines, Arizona, USA". Bern. Walton-Day. Naftz \
+[6] "Principal component analysis as a tool to indicate the origin of potenitally toxic elemnts in soils". Boruvka. Vacek. Jehlicka. \
+[7] V-Measure: A conditional entropy-based external cluster evaluation measure Andrew Rosenberg and Julia Hirschberg, 2007 (https://scikit-learn.org/stable/modules/clustering.html#homogeneity-completeness) \
+[8] Identication and Characterization of Events in Social Media, Hila Becker, PhD Thesis. (https://scikit-learn.org/stable/modules/clustering.html#homogeneity-completeness) \
 
