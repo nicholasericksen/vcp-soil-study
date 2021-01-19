@@ -1,10 +1,17 @@
 import pandas as pd
 import matplotlib.pyplot as plt
+import matplotlib.lines as mlines
 import seaborn as sns
+import itertools
+import random
 
 from sklearn import preprocessing
 from sklearn.decomposition import PCA
 from sklearn.cluster import KMeans
+
+from sklearn.metrics.cluster import homogeneity_score
+from sklearn.metrics.cluster import completeness_score
+from sklearn.metrics.cluster import v_measure_score
 
 
 label_key = input("Enter label key ('region' or 'soil_type'): ")
@@ -129,10 +136,6 @@ for label in y[LABELS_KEY]:
   y_true.append(numerical_labels[unique_labels.index(label)])
 
 # Measuring KMeans Performance
-from sklearn.metrics.cluster import homogeneity_score
-from sklearn.metrics.cluster import completeness_score
-from sklearn.metrics.cluster import v_measure_score
-
 print(f"KMeans Raw Data Performance ({LABELS_KEY})")
 print("Homogeneity Score")
 print(homogeneity_score(y_true, y_pred))
@@ -176,10 +179,6 @@ clusters = model.fit(X_pca[:,0:pca_components])
 y_pred = clusters.labels_
 
 # Measuring KMeans Performance
-from sklearn.metrics.cluster import homogeneity_score
-from sklearn.metrics.cluster import completeness_score
-from sklearn.metrics.cluster import v_measure_score
-
 print("\nPCA KMeans Performance")
 print("Homogeneity Score")
 print(homogeneity_score(y_true, y_pred))
@@ -197,8 +196,6 @@ current_label = y[LABELS_KEY][0]
 X_pca_1_tmp = []
 X_pca_2_tmp = []
 
-import itertools
-import random
 marker = itertools.cycle(('+', 'o', '*', 'v', '<', '>', 'x', 'D')) 
 
 r = lambda: random.randint(0,255)
@@ -215,7 +212,6 @@ df_pca['color'] = df_pca['color'].replace(numerical_labels, [colors[x] for x in 
 print(unique_labels)
 print(df_pca)
 
-import matplotlib.lines as mlines
 handles = []
 for label in unique_labels:
   tmp_df = df_pca[df_pca["label"] == label]

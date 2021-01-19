@@ -1,15 +1,21 @@
 # Soil Analysis
-The soil data is stored as a csv file and was analyzed using various Python modules.
-The Pandas Python module vX.X was used to process and handle the raw data read in from the csv file.
-Matplotlib vX.X along with the Seaborn package vX.X was used to visualize the data.
-Scikit Learn was leveraged to perform Principal Component Analysis and KMeans clustering of the data.
+The soil data is stored as a csv file containing the column headers in the first row and subsequent rows containing the raw data for each sample collected.
 
-The modules were installed using pip according to there documentation and imported into the `analysis.py` script as such
+Each region was sampled 45 times for the elements Na, Mg, Al, Si, S, K, Ca, Ba, Ti, V, Cr, Mn, Fe, Co, Ni, Cu, and Zn.
+The data was analyzed using various Python v3.7.2.
+The Pandas Python module v1.1.4 was used to process and handle the raw data by loading the csv file into a dataframe.
+Matplotlib v3.3.3 along with the Seaborn package v0.11.0 was used to visualize the data.
+Scikit Learn v0.23.2 was leveraged to perform Principal Component Analysis and KMeans clustering of the data.
+
+The packages were installed using pip and the specific modules imported into the `analysis.py` script as such
 
 ```
 import pandas as pd
 import matplotlib.pyplot as plt
+import matplotlib.lines as mlines
 import seaborn as sns
+import itertools
+import random
 
 from sklearn import preprocessing
 from sklearn.decomposition import PCA
@@ -18,16 +24,15 @@ from sklearn.cluster import KMeans
 from sklearn.metrics.cluster import homogeneity_score
 from sklearn.metrics.cluster import completeness_score
 from sklearn.metrics.cluster import v_measure_score
-
 ```
+
+The specific version of each package can be found in the `requirements.txt` file.
 
 The analysis can be reproduced by downloading the soil dataset csv file and running `python analysis.py`.
 
 ### Descriptive Statistics
-The soil dataset consists of 21 columns of data.
-Each separate region in the park is denoted as a shorthand (cw) (tb) etc...
-Columns 0-3 tag each sample with information about where it was extracted.
-The transect and plot give the detailed location of each sample which are uniquely identifiable by there sample id.
+The regions are divided into the Northwest Forest (nwf), the Croton Woods (cw), Vault Hill (vh), and the Tibbets Brook Floodplain Forest (tb).
+The transect and plot give the detailed location of each sample which are uniquely identifiable by there sample id, but only region level analysis was performed in this study.
 
 
 The provided csv file was read into a Pandas dataframe using 
@@ -70,10 +75,12 @@ Data columns (total 21 columns):
 
 There are 180 non null entries in total which match the number of samples collected and measured.
 This dataset therefore can be said to have 180 datapoints each with 17 numerical features and 4 descriptive labels.
-In this study each of the 4 regions will be considered independantly.
-
+In this study each of the 4 regions will be compared and contrasted using element composition and the correlation of elements within each region.
+A broad overview of statistics for the entire dataset is also analyzed to provide insight into the individual characteristics of each element.
 The highest average concentration of elements accross all sites was of silicon (162,051 ppm) and iron (31,078 ppm).
 Aluminum (3 ppm) and cobalt (25 ppm) were the elements with the lowest average concentration accross all regions.
+
+TODO: Any speculation as to why these elements are concentrated as such? more silicon and iron is this expected?
 
 The complete breakdown of statistics for each element in the dataset can be found in Figure x.
 
@@ -119,14 +126,16 @@ min    -10.125255   143.451616
 max    974.460895  1211.514519  
 
 ```
-This table of descriptive statistics was generated using `df.describe()`.
+This table of descriptive statistics was generated using the `df.describe()` method in Pandas.
 
-Why do some have the lowest value in the negatives??
-Histograms of the raw data can be found in Appendix.
+Histograms of the raw data can be found in the Appendix.
 
 ![All Elements by Region](results/dataset-visual.png?raw=true)
 
-TODO: Add comment here as to how each region is different by element or the same by comparing each elements regional mean to the overall mean.
+It can be seen in Figure X above that differences in each element concentration exist accross each individual region.
+For example calcium and titanium are more prevelant in the Northwest forest, but contain less iron and silicon in comparison to the other regions.
+
+TODO: Any speculation as to why this is?
 
 ### Element Correlation
 
@@ -135,10 +144,12 @@ It value ranges from -1 to 1 with -1 being total negative linear correlation and
 Positive linear correlation describes the relationship between two variables in which if the value of one increases, so does the other.
 When a negative linear correlation exists between two variables, it implies that as one variable increases the other decreases.
 A correlation of zero implies that no correlation exists between the two variables, or one variable can not be used to predict the other.
-Uncorrelated variables are useful for classification and regression analysis as they contain the least redundant information.
+Uncorrelated variables are useful for classification and regression analysis as they contain the least redundant information. 
 
-The results of calculating this coefficient for each combinational pair of elements results in the following heatmap.
-This correlation matrix was calculated using Pandas and plotted using the Seaborn package.
+The Pearson correlation coefficient is often used for assessing the linear relationship between independantly distrubuted normal variables in biological statistics [1][2].
+
+
+The results of calculating this coefficient for each combinational pair of elements for the Vancortdlant park soil study results in the following heatmap.
 
 ```
 # Determine the correlation of the dataframe
@@ -149,16 +160,16 @@ sns.heatmap(round(correlation, 2), annot=True, cmap="coolwarm", fmt=".2f", linew
 plt.show()
 ```
 
-Inspecting the correlation heatmap for the entire dataset in Figure X shows that there is only one element pair that is strongly correlated.
+Inspecting the correlation heatmap for the entire dataset in Figure X shows that there is only one element pair that is strongly correlated when analyzing the entire set of raw samples.
 
 ![All Region Element Heatmap](results/all-regions-correlation.png?raw=true)
 
-Strong correlation refers to correlations with magnitudes greater than 0.90.
+Strong correlation in this study refers to correlations with magnitudes greater than 0.90.
 Sodium (Na) and Magnesium (Mg) show a strong negative linear correlation for the complete dataset.
-This relationship can be shown to be strong accross each region as well when inspected independantly of one another as shown in Figures A, B, C, and D.
-No other element shows strong correlation, although the Copper (Cu) - Zinc (Zn) and Cadanium (Ca) - Zinc (Zn) have high correlations at 0.89.
+This relationship can be shown to be strong accross each region as well when inspecting each region independantly of one another as shown in Figures A, B, C, and D.
+No other element shows strong correlation, although the Copper (Cu) - Zinc (Zn) and Cadanium (Ca) - Zinc (Zn) element pairs have high correlations at 0.89.
 
-The Cu-Zn pair is only strongly positively correlated in one region,  nwf.
+The Cu-Zn pair is only strongly positively correlated in one region, the Northwest Forest (nwf).
 Each of the other three regions show weak or mild correlation; vh (0.56), cw (0.27), and tb (0.10).
 It can therefore be inferred by visual inspection of the correlation heatmaps that highly correlated pairs of elements can potentially be used for distictly classifiying each region.
 Each region has its own unique pair of highly correlated elements as shown in Figures, A, B, C, and D.
@@ -172,24 +183,25 @@ Each region has its own unique pair of highly correlated elements as shown in Fi
 
 As discussed the nwf region has a high positive linear correlation amongst the Cu-Zn element pair in which no other region has a signigicantly strong correlation.
 The CW region has a uniquely high correlation between Titanium (Ti) and Nickel (Ni) at 0.93.
-Both the VH and TB regions have strong positive correlations to iron (Fe) and Cobalt (Co) although they do also have uniquely strong correlated pairs in Mn-Co at 0.91 for TB and AL-K at 0.92 for VH.
+Both the VH and TB regions have strong positive correlations to iron (Fe) and Cobalt (Co) although they also each have uniquely strong correlated pairs in Mn-Co at 0.91 for the Tibbetts brook floodplain forest and AL-K at 0.92 for the Vault Hill region.
 
 It would seem from even this preliminary analysis that uniquely strong positive correlation pairs between each region can be useful for classification of the respective regions.
 
 
 ### Principal Component Analysis
-Although there are many element pairs which show only slight to moderate correlation, it may still be useful to reduce the amount of redudant information stored in each variable by analyzing 
-the amount of variance each element explains in the dataset.
-
 Principal Component Analysis (PCA) is a useful data reduction tool that creates orthogonal linear combinations of features to create new dimensions for the underlying dataset.
 This can be used to remove elements which are highly correlated and therefore provide redundant information to the dataset.
-This data reduction can be useful for visualizating underlying dataset relationships and provide performance improvements during future processing steps such as KMeans clustering.
-PCA can also provide insight into which feature groups are used to make up each new dimension.
+This data reduction can also be useful for visualizating underlying dataset relationships and provide performance improvements during future processing steps such as KMeans clustering.
+PCA can also provide insight into which feature groups are used to make up each new dimension. [3]
 
-PCA uses eigen values and vectors etc....
+Although there are many element pairs which show only slight to moderate correlation, it is still useful to reduce the amount of redudant information stored in each variable by analyzing 
+the amount of variance each element explains in the dataset.
 
 The explained variance of each principal component that is created can be used to show the amount of dimensionality reduction that can be performed on the initial feature set.
-The overall goal is to use the minimum amount of pricipal components while maintaining a 90% explained variance on the data.
+The overall goal in PCA is to retain as much of the variance in the data as possible (>90%) using the least number of principal components.
+PCA has been used to previously analyze soil for identifying the pollution levels in soils [4], determining the background element for calculating the geoaccumulation index score of soils [5]+[6], and observing elements within soil compositions [3].
+
+
 Calulcating the Principal Components can be accomplished using the Python SciKit Learn Library 
 
 ```
@@ -197,8 +209,9 @@ pca = PCA()
 components = pca.fit(X)
 ```
 
-where `X` is a subset of the original dataframe that includes all the features, but none of the labels.
+where `X` is a subset of the original dataframe that includes all of the soil features.
 The features are scaled using the `StandardScaler` method of the SciKit Learn preprocessing library which removes the mean and scales the features according to the unit variance.
+This is an important step in the preprocossing of the data to ensure all features share the same unit relation to one another.
 
 `X = preprocessing.StandardScaler().fit_transform(df.loc[:,df.dtypes == 'float64'])`
 
@@ -242,43 +255,42 @@ The first five components account for 89.22% of the total explained variance.
 This represents a reduction in dimensionality of 12 dimensions of the data from the original 17 features down to just 5 features.
 
 Factor loadings describe the weighting on each linear combination of elements that is created from performing PCA.
-Each component represents a linear combination of orthogonal features from the original dataset.
-These factor weightings are shown in Figure X.
+Each principal component represents a linear combination of orthogonal features from the original dataset.
+The factor weightings of these linear combinations of elements are shown in Figure X.
 
 ![PCA Component Weighting](results/pca-heatmap-components.png)
 
 As the Na-Mg correlation showed a highly negative linear relationship in the previous correlation heatmaps for each region, it provides little information for distinguishing between 
 each region.
 The overall total concentration for each region also varys only slightly.
-It is therefore expected that this combination of does not provide much insight into the overall dataset.
+It is therefore expected that this combination of does not provide much insight into the overall dataset and will not have a significant factor weighting in a majority of the principal components.
 This is verified in Figure X. as both Na and Mg are the most highly weighted elements in the 16th principal component which explains only 0.08% of the variance.
-These elements are the most significantly weighted in the 16th principal component.
 
 Observing the highest weights (>0.35) on the first 5 factor loadings shows each component is made up of unique elements.
+These elements all have relationships to one another at an atomic level as described on the periodic table of elements.
+Using the table as a guide can provide insight into the weightings of each component.
 Looking at the first five components shows that the first principal component is mainly made up of S (0.37) and Cu (0.37). (non-metal and transition metal)
 The second component is made up of Al (-0.36) and Ni (-0.38). (post transition metal and transition metal)
-This vector potentially represents the null vector with some noise. 
+As the weightings of each element are low in the second component, this vector potentially represents the null vector with some noise. 
 The third component is made up of mostly Cr (-0.38), Mn (0.47), and Co (0.42). (transition elements 24,25,27)
 The fourth component is made up of mostly Mn (0.45), Ca (0.40), and Zn (0.36). (transition metal, Akaline earth metal, transition metal)
 The fifth component is made up of mostly Al (0.42), Ti (0.38), Fe (-0.49), and Co (-0.42) (post transition metal, transition metal, transition metal, transition metal)
 
 
 Interpreting the weights assigned to each principal component requires domain expertise and is sometimes not possible.
-All components do have a transition metal as one of the most heavily weighted components along with a unique element class.
-Weights can be both positive and negative to show positive and negative underlying correlation.
-The first component can be considered the non-metal weighting, the second the negative post-transition metal weighting, the third comprising middle transition elements,
-the fourth a combination of akaline earth metal and transition metal, and the fifth the positive post transition metals.
+TODO: Try and explain these weightings in more detail. The following is speculation using the periodic table of elements to draw basic conclusions.
 
-This represents a simplified interpretation of PCA components.
+All components do have a transition metal as one of the most heavily weighted components along with a unique element class.
+Weights can be positive or negative to show both positive and negative underlying correlations.
+The first component can be considered the non-metal weighting, the second the negative post-transition metal weighting, the third comprising middle transition elements,
+The fourth a combination of akaline earth metal and transition metal, and the fifth the positive post transition metals.
 
 ### K-Means Clustering
-
-K-Means is an exact solution to linear problem when looked at in relation to PCA....etc
-
-K Means clustering...
-In this scenario the clustering of the data is performed to analysis if relationships exist between the various ecosystems of Van Cortlandt Park
+K Means clustering is an unsupervised machine learning technique used to group similar data points.
+Each data point is groupped into a cluster by there means.
+In this scenario the clustering of the data is performed to analyze if relationships exist between the various ecosystems of Van Cortlandt Park
 and the underlying soil composition.
-As a result, the generalness of the model and clustering is not generalized to other locations, but rather is provided as a relative comparision of each of the four regions.
+As a result, the models and clusterings are not generalized to other locations, but rather are used to provid a relative comparision of each of the four regions.
 
 The inertia of centroids between clusters is a measure of the root square mean, which ideally is minimized between each independant cluster.
 Although we assume there are four regions under consideration for the majority of this study it is shown in the Figure X below that the ideal number of clusters is around seven when using
@@ -293,7 +305,7 @@ There are a variety of metrics that can be used for measuring the performance of
 KMeans clustering commonly uses the metrics of completeness, homogeneity and V score to gauge its performance.
 The completeness of a cluster is determined by the how many members of a given class are placed in the same cluster.
 The homogeneity of a cluster means that all observations with the same class label are placed in the same cluster.
-An overall relationship between the completeness and homogeneity of a cluster can be determined using a combination of the two measurements weighted by a beta factor and is known as the V score.
+An overall relationship between the completeness and homogeneity of a cluster can be determined using a combination of the two measurements weighted by a beta factor and is known as the V score.[7]+[8]
 
 ```
 v = (1 + beta) * homogeneity * completeness
@@ -327,10 +339,12 @@ The scatter plot is created of the first two principal components...
 
 The performance of n=4 clusters using PCA is also not very accurate based off of the V score, which reflects the underlying homogeneity and completeness of the classification.
 
+```
 PCA KMeans Performance (5 components) \
 Homogeneity Score: 0.258 \
 Completeness Score: 0.304 \
 V Score: 0.279
+```
 
 It is shown that the approximately the same amount of performance for KMeans clustering can be obtained using only the first 5 components will getting around the same
 homogeneity, completeness and V score as the complete dataset.
@@ -340,10 +354,12 @@ The results of KMeans clustering using all PCA components is shown below
 
 Again with n=4 clusters produces slightly better results when using all PCA components.
 
+```
 PCA KMeans Performance (All Components) \
 Homogeneity Score: 0.274 \
 Completeness Score: 0.298 \
 V Score: 0.285
+```
 
 ### Soil Type Analysis
 The inertia plots above show that the ideal number of clusters from the data is somewhere between four and seven, observed using the elbow method.
@@ -358,6 +374,11 @@ Figure X shows the first two principal components of KMeans clustering in a two 
 The first five principal components were used to perform the clustering.
 For ease of visualization only the first two dimensions are shown here.
 Seven clusters were choosen to represent the different soil types.
+
+It is no surprise that the same data characteristics present in the underlying soil types are similar to that of the broader regions. ??
+The anthropogenic impact on the soil is low and is reflected in the enrichment scores calculated, previously. ??
+If there was a large impact in certain regions, it would be shown in the higher amounts of trace elements across specific regions when compared to similar soil types elsewhere. ??
+(TODO: think more closely on relationship between elements in different soil types and regions, possibly remove above)
 
 ![Soil Type KMEANS](results/soil-type-kmeans.png)
 
@@ -382,3 +403,28 @@ Completeness Score
 V Score
 0.378433756619111
 ```
+
+The results of the KMeans clustering shown by visual insepection of the scatter plot above, shows there are distinct clusters even using just the first two principals components.
+As some of the soil types have only a small number of samples, it may be worth considering there removal to improve classification further.
+These results are the most general in that they include each type of soil collected for this research.
+
+### Conclusion
+The sampling and measurement of soil element concentrations accross Van Cordtlant Park performed in this study show the relationship between each element within the observed regions as well as the ability to classify these regions based on there soil characteristics.
+Through the use of correlation matrices and descriptive statistics it has been shown that although each region contains unique elemental concentrations, although some elements are more prevalant than others in any given region.
+Each region contains uniquely correlated pairs of elements which can be correlated accross each independant region as well as the entire sample set.
+The use of principal component analysis provides a reduction in the overall features of the dataset while maintaining a high amount of variance in the original dataset for visualizing element relationships accross regions.
+KMeans clustering using the raw dataset as well as principals components was also compared and demonstrates the tradeoff between feature reduction and unsupervised clustering.
+Namely the reduction in features allows for more comprehensive visualizations of clusters with a slight hit to the performance of the KMeans classifier.
+The underlying soil types were also compared and it was observed that they can more accurately be used for classification than the larger regions which represent different ecosystems within the park.
+
+
+### References
+[1] https://www.sciencedirect.com/topics/mathematics/pearson-correlation-coefficient
+[2] https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6926743/
+[3] "Discrimination of management effects on soil parameters by using principal component analysis: a multivariate analysis case study" Sena. Frighetteo. Valarini. Tokeshi. Poppi.
+[4] "Assesment of Soil heavy Metail Pollution with Principal Component Analysis and GeoAccumulation index". Zhiyuan. Dengfend. huiping. Zhiping.
+[5] "Improved Enrichemnt fdactor calculations through principal component analysis: Examples from soils near breccia pipe uraniu, mines, Arizona, USA". Bern. Walton-Day. Naftz
+[6] "Principal component analysis as a tool to indicate the origin of potenitally toxic elemnts in soils". Boruvka. Vacek. Jehlicka.
+[7] V-Measure: A conditional entropy-based external cluster evaluation measure Andrew Rosenberg and Julia Hirschberg, 2007 (https://scikit-learn.org/stable/modules/clustering.html#homogeneity-completeness)
+[8] Identication and Characterization of Events in Social Media, Hila Becker, PhD Thesis. (https://scikit-learn.org/stable/modules/clustering.html#homogeneity-completeness)
+
